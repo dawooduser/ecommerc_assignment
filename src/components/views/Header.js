@@ -6,24 +6,42 @@ import { genericRatio } from '../../helper'
 import PropTypes from 'prop-types'
 import { useNavigation } from '@react-navigation/native'
 import HorizontalSpace from './HorizontalSpace'
+import HeaderBackBtn from './HeaderBackBtn'
+import HeaderSearchContainer from './HeaderSearchContainer'
 
-const Header = ({ title }) => {
-    const navigation = useNavigation()
-    const backNavigation = useCallback(() => navigation.goBack(), [])
-    return (
-        <View style={[styles.container, commonStyles.fullWidth, commonStyles.rowDirectionCenter, commonStyles.spaceBetween]}>
-            <TouchableOpacity onPress={backNavigation}>
-                <Ionicons name={"arrow-back"} size={genericRatio(25)} color={'#9e9f99'} />
-            </TouchableOpacity>
+const Header = ({ title = '', mode = 'simple', container = {}, showFilterBool = false }) => {
+    const Simple = useCallback(() => (
+        <>
+            <HeaderBackBtn />
             <Text style={[styles.textStyle, FONTS.h3]}>{title}</Text>
-            <HorizontalSpace container={{width: genericRatio(25)}} />
+            <HorizontalSpace container={{ width: genericRatio(25) }} />
+        </>
+    ), [])
+
+    const Search = useCallback(() => (
+        <>
+        <HeaderBackBtn />
+        <HorizontalSpace />
+        <HeaderSearchContainer />
+        </>
+    ), [])
+
+    const HeaderMode = useCallback(() => {
+        const ListOfHeaders = {
+            'simple': <Simple />,
+            'search': <Search />
+        }
+        return ListOfHeaders[mode] || <View />
+    }, [])
+    return (
+        <View style={[styles.container, commonStyles.fullWidth, commonStyles.rowDirectionCenter, commonStyles.spaceBetween, container]}>
+            <HeaderMode />
         </View>
     )
 }
 
-Header.propType = {
-    title: PropTypes.string.isRequired,
-}
+Header.propType = {}
+
 export default memo(Header)
 
 const styles = StyleSheet.create({
