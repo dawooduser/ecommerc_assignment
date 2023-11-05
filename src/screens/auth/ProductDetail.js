@@ -59,7 +59,7 @@ const ProductDetail = () => {
             <Text style={[FONTS.body3, {color: COLORS.black}]}>{"Shipping"}</Text>
           </View>
           
-          <View style={[commonStyles.center, {paddingVertical: 15}]}>
+          <View style={[commonStyles.center, {paddingVertical: 15, backgroundColor: '#f9f9f9'}]}>
             <Text style={[FONTS.body4, {color: 'black', fontFamily: 'Roboto-light'}]}>{"Standard: as per selected time slot."}</Text>
             <Text style={[FONTS.body4, {color: 'green',}]}>{"Free delivery on orders above QAR 99."}</Text>
           </View>
@@ -75,7 +75,10 @@ const ProductDetail = () => {
           </View>
         </View>
         <VerticalSpace />
+        <View style={[styles.screenPaddingHorizontalSpace]}>
         <ProductScreenBottomSection />
+        </View>
+        <VerticalSpace />
 
 
 
@@ -90,7 +93,7 @@ export default ProductDetail
 
 const styles = StyleSheet.create({
   screenPaddingHorizontalSpace: {
-    paddingHorizontal: 10, backgroundColor: COLORS.secondary
+    paddingHorizontal: 10, backgroundColor: '#f9f9f9'
   },
   titleContainer: { justifyContent: 'center', paddingVertical: 10 },
   priceSection: { fontFamily: 'Roboto-light', color: 'black' },

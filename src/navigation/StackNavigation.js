@@ -22,7 +22,7 @@ function StackNavigation() {
     <NavigationContainer>
       <Stack.Navigator 
       screenOptions={{headerShown: false}}
-      initialRouteName={"ProductDetail"}
+      initialRouteName={"ProductFashion"}
       >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Cart" component={Cart} />
